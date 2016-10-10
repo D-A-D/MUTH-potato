@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */
 public class GyroPlotter extends Application {
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(this.getClass().getResource("layouts/GyroPlotter.fxml").getPath()));
+        Parent root = FXMLLoader.load(getClass().getResource("/layouts/gyro.fxml"));
         primaryStage.setTitle("Gyro Plots from MYO");
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.show();
