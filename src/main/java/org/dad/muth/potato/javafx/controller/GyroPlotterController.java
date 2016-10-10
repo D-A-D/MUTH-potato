@@ -1,4 +1,4 @@
-package org.dad.muth.potato.controller;
+package org.dad.muth.potato.javafx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.chart.LineChart;
