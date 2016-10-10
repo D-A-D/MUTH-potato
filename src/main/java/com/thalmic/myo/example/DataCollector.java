@@ -1,9 +1,6 @@
 package com.thalmic.myo.example;
 
-import com.thalmic.myo.AbstractDeviceListener;
-import com.thalmic.myo.Myo;
-import com.thalmic.myo.Pose;
-import com.thalmic.myo.Quaternion;
+import com.thalmic.myo.*;
 import com.thalmic.myo.enums.Arm;
 import com.thalmic.myo.enums.PoseType;
 import com.thalmic.myo.enums.VibrationType;
@@ -17,6 +14,7 @@ public class DataCollector extends AbstractDeviceListener {
 	private double yawW;
 	private Pose currentPose;
 	private Arm whichArm;
+	private Vector3 acceleration;
 
 	public DataCollector() {
 		rollW = 0;
@@ -57,6 +55,13 @@ public class DataCollector extends AbstractDeviceListener {
 	}
 
 	@Override
+	public void onAccelerometerData(Myo myo, long timestamp, Vector3 accel) {
+		super.onAccelerometerData(myo, timestamp, accel);
+		this.acceleration = accel;
+
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder("\r");
 
@@ -77,11 +82,13 @@ public class DataCollector extends AbstractDeviceListener {
 		} else {
 			poseString = String.format("[%14s]", " ");
 		}
+		String accelString = acceleration.toString();
 		builder.append(xDisplay);
 		builder.append(yDisplay);
 		builder.append(zDisplay);
 		builder.append(armString);
 		builder.append(poseString);
+		builder.append(accelString);
 		return builder.toString();
 	}
 
