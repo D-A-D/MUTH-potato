@@ -12,17 +12,25 @@
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="604.0" prefWidth="376.0">
       <children>
-        <LineChart fx:id="rollChart" layoutX="42.0" layoutY="54.0" prefHeight="180.0" prefWidth="320.0" title="Roll">
+        <LineChart id="xLineChart" fx:id="yLineChart" layoutX="58.0" layoutY="250.0" prefHeight="167.0" prefWidth="288.0" title="Y : Gyroscope">
           <xAxis>
-            <CategoryAxis side="BOTTOM" />
+            <NumberAxis id="xTimeAxis" fx:id="yTimeAxis" forceZeroInRange="false" minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="false" tickLength="1.0" tickMarkVisible="true" tickUnit="1.0" />
           </xAxis>
           <yAxis>
-            <NumberAxis animated="true" side="LEFT" tickLabelsVisible="true" />
+            <NumberAxis side="LEFT" />
           </yAxis>
         </LineChart>
-        <LineChart id="LineChartNxN" fx:id="xLineChart" layoutX="58.0" layoutY="244.0" prefHeight="167.0" prefWidth="288.0">
+        <LineChart id="yLineChart" fx:id="xLineChart" layoutX="58.0" layoutY="52.0" prefHeight="167.0" prefWidth="288.0" title="X : Gyroscope">
           <xAxis>
             <NumberAxis fx:id="xTimeAxis" forceZeroInRange="false" minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="false" tickLength="1.0" tickMarkVisible="true" tickUnit="1.0" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT" />
+          </yAxis>
+        </LineChart>
+        <LineChart id="yLineChart" fx:id="zLineChart" layoutX="58.0" layoutY="430.0" prefHeight="167.0" prefWidth="288.0" title="Z : Gyroscope">
+          <xAxis>
+            <NumberAxis id="xTimeAxis" fx:id="zTimeAxis" forceZeroInRange="false" minorTickCount="0" minorTickLength="0.0" minorTickVisible="false" side="BOTTOM" tickLabelsVisible="false" tickLength="1.0" tickMarkVisible="true" tickUnit="1.0" />
           </xAxis>
           <yAxis>
             <NumberAxis side="LEFT" />

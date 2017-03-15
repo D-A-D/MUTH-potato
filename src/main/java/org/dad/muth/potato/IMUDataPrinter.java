@@ -25,7 +25,7 @@ public class IMUDataPrinter  {
             hub.addListener(dataCollector);
 
             while (true) {
-                hub.run(1000 / 100);
+                hub.run(1000 / 500);
                 System.out.print(dataCollector);
             }
         } catch (Exception e) {
