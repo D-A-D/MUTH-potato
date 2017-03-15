@@ -21,9 +21,9 @@ import java.util.ResourceBundle;
  */
 public class GyroPlotterController implements Initializable{
     @FXML
-    public LineChart pitchChart;
+    public LineChart xLineChart;
     @FXML
-    public NumberAxis pitchTimeAxis;
+    public NumberAxis xTimeAxis;
     public GyroPlotterController(){
 
     }
@@ -48,15 +48,15 @@ public class GyroPlotterController implements Initializable{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                XYChart.Series<Long, Double> pitchSeries = (XYChart.Series<Long, Double>) pitchChart.getData().get(0);
-                pitchSeries.getData().add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
-                if(pitchSeries.getData().size()>250){
-                    pitchSeries.getData().remove(0);
+                XYChart.Series<Long, Double> xSeries = (XYChart.Series<Long, Double>) xLineChart.getData().get(0);
+                xSeries.getData().add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
+                if(xSeries.getData().size()>250){
+                    xSeries.getData().remove(0);
                 }
-                System.out.println(" X : " + pitchSeries.getData().size());
-                pitchTimeAxis.setTickUnit(1);
-                pitchTimeAxis.setLowerBound(pitchSeries.getData().get(0).getXValue());
-                pitchTimeAxis.setUpperBound(pitchSeries.getData().get(pitchSeries.getData().size()-1).getXValue());
+                System.out.println(" X : " + xSeries.getData().size());
+                xTimeAxis.setTickUnit(1);
+                xTimeAxis.setLowerBound(xSeries.getData().get(0).getXValue());
+                xTimeAxis.setUpperBound(xSeries.getData().get(xSeries.getData().size()-1).getXValue());
             }
         });
     }
@@ -64,8 +64,8 @@ public class GyroPlotterController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GyroPlotter.gyroPlotterController = this;
-        pitchChart.setAnimated(true);
-        pitchChart.setData(initGyroPlotData());
+        xLineChart.setAnimated(true);
+        xLineChart.setData(initGyroPlotData());
        // prepareTimeline();
     }
 
