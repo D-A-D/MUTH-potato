@@ -107,7 +107,7 @@
     </build>
 
     <properties>
-        <javaCompilerVersion>1.8</javaCompilerVersion>
+        <javaCompilerVersion>1.7</javaCompilerVersion>
         <TIMESTAMP>${maven.build.timestamp}</TIMESTAMP>
         <muth.potato.version.long>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} ${parsedVersion.qualifier} Build ${revisionNumber}</muth.potato.version.long>
         <muth.potato.version.short>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${revisionNumber}</muth.potato.version.short>

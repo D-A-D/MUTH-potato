@@ -40,16 +40,17 @@ public class MyoInitializer extends Thread{
         DeviceListener myoListener = new MyoListener();
         hub.addListener(myoListener);
     }
+    // excites callbacks?
     private void refreshData(){
         hub.run(duration_ms);
-        System.out.print("Connected!!");
+        //System.out.print("Connected!!");
     }
 
     @Override
     public void run() {
         while(true) {
-            System.out.println("Connecting");
-            hub.run(duration_ms);
+            refreshData();
+            //hub.run(duration_ms);
             try {
                 sleep(duration_ms);
             } catch (InterruptedException e) {

@@ -5,18 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.dad.muth.potato.javafx.controller.GyroPlotterController;
 import org.dad.muth.potato.myo.MyoInitializer;
 
 /**
  * Created by Mayank on 10/10/2016.
  */
 public class GyroPlotter extends Application {
+    public static GyroPlotterController gyroPlotterController;
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/layouts/gyro.fxml"));
         primaryStage.setTitle("Gyro Plots from MYO");
         primaryStage.setScene(new Scene(root,1280, 720));
         primaryStage.show();
         startMyo();
+
     }
 
     public static void main(String[] args) {
@@ -28,4 +31,5 @@ public class GyroPlotter extends Application {
         myoInitializer.start();
 
     }
+
 }
