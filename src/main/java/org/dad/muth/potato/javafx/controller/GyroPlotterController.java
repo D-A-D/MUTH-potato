@@ -50,7 +50,7 @@ public class GyroPlotterController implements Initializable{
             public void run() {
                 XYChart.Series<Long, Double> pitchSeries = (XYChart.Series<Long, Double>) pitchChart.getData().get(0);
                 pitchSeries.getData().add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
-                if(pitchSeries.getData().size()>50){
+                if(pitchSeries.getData().size()>250){
                     pitchSeries.getData().remove(0);
                 }
                 System.out.println(" X : " + pitchSeries.getData().size());

@@ -15,6 +15,7 @@ public class MyoListener extends AbstractDeviceListener {
     public void onOrientationData(Myo myo, long timestamp, Quaternion rotation) {
         super.onOrientationData(myo, timestamp, rotation);
         GyroPlotter.gyroPlotterController.addGyroData(intervalCount++,rotation);
+
     }
 
 }
