@@ -33,6 +33,8 @@ public class GyroPlotterController implements Initializable{
     @FXML
     public NumberAxis zTimeAxis;
 
+    static boolean yPeakReached=false;
+
     public GyroPlotterController(){
 
     }
@@ -54,19 +56,29 @@ public class GyroPlotterController implements Initializable{
         return list;
     }
     public void addGyroData(final long timestamp, final Quaternion rotation) {
+        final XYChart.Series<Long, Double> ySeries = (XYChart.Series<Long, Double>) yLineChart.getData().get(0);
+        final ObservableList<XYChart.Data<Long, Double>> ySeriesData = ySeries.getData();
+        if(!yPeakReached) {
+            if (ySeriesData.size() >= 50) {
+                yPeakReached = true;
+                System.out.println("Y peak reached");
+            }
+        }
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                XYChart.Series<Long, Double> ySeries = (XYChart.Series<Long, Double>) yLineChart.getData().get(0);
-                ySeries.getData().add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
-                if(ySeries.getData().size()>250){
-                    ySeries.getData().remove(0);
+                if(yPeakReached) {
+                    System.out.println("Removing " + ySeriesData.size());
+                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
+                    ySeriesData.remove(0);
+                    yTimeAxis.setLowerBound(ySeriesData.get(0).getXValue());
+                    yTimeAxis.setUpperBound(ySeriesData.get(ySeriesData.size() - 1).getXValue());
+                }else{
+                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
                 }
-                yTimeAxis.setLowerBound(ySeries.getData().get(0).getXValue());
-                yTimeAxis.setUpperBound(ySeries.getData().get(ySeries.getData().size()-1).getXValue());
             }
         });
-        Platform.runLater(new Runnable() {
+        /*Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 XYChart.Series<Long, Double> xSeries = (XYChart.Series<Long, Double>) xLineChart.getData().get(0);
@@ -89,7 +101,7 @@ public class GyroPlotterController implements Initializable{
                 zTimeAxis.setLowerBound(zSeries.getData().get(0).getXValue());
                 zTimeAxis.setUpperBound(zSeries.getData().get(zSeries.getData().size()-1).getXValue());
             }
-        });
+        });*/
     }
 
     @Override
