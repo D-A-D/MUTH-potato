@@ -69,12 +69,12 @@ public class GyroPlotterController implements Initializable{
             public void run() {
                 if(yPeakReached) {
                     System.out.println("Removing " + ySeriesData.size());
-                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
+                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getX()*10));
                     ySeriesData.remove(0);
                     yTimeAxis.setLowerBound(ySeriesData.get(0).getXValue());
                     yTimeAxis.setUpperBound(ySeriesData.get(ySeriesData.size() - 1).getXValue());
                 }else{
-                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getY()*10));
+                    ySeriesData.add(new XYChart.Data<Long, Double>(timestamp,rotation.getX()*10));
                 }
             }
         });
